@@ -1,5 +1,4 @@
 const Categories = require("./categories.model");
-const CategoriesCourses = require("./categoriesCourses.model");
 const Courses = require("./courses.model");
 const UserCourses = require("./userCourses.model");
 const Users = require("./users.model");
@@ -12,23 +11,14 @@ const initModels = () => {
   Courses.hasMany(UserCourses, { as: "subscribers", foreignKey: "course_id" });
   UserCourses.belongsTo(Courses, { as: "course", foreignKey: "course_id" });
 
-  Courses.hasOne(Videos, { as: "video", foreignKey: "course_id" });
+  Courses.hasMany(Videos, { as: "video", foreignKey: "course_id" });
   Videos.belongsTo(Courses, { as: "course", foreignKey: "course_id" });
 
-  Courses.hasMany(CategoriesCourses, {
-    as: "categories",
-    foreignKey: "course_id",
-  });
-  CategoriesCourses.belongsTo(Courses, {
-    as: "courses",
-    foreignKey: "course_id",
-  });
-
-  Categories.hasMany(CategoriesCourses, {
+  Categories.hasMany(Courses, {
     as: "courses",
     foreignKey: "category_id",
   });
-  CategoriesCourses.belongsTo(Categories, {
+  Courses.belongsTo(Categories, {
     as: "category",
     foreignKey: "category_id",
   });

@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const db = require("../utils/dababase");
+const Categories = require("./categories.model");
 
 const Courses = db.define("courses", {
   id: {
@@ -19,6 +20,15 @@ const Courses = db.define("courses", {
   instructor: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  categoryId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Categories,
+      key: "id",
+    },
+    allowNull: false,
+    field: "category_id",
   },
 });
 
