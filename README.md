@@ -8,6 +8,6 @@ https://coursesapi.up.railway.app
 #### Routes:
 /api/v1/...
 - User
--Courses
--Categories
--Videos
+- Courses
+- Categories
+- Videos
