@@ -1,5 +1,6 @@
 const express = require("express");
 const initModels = require("./models/initModels");
+const seed = require("./seeders/seed");
 const db = require("./utils/dababase");
 //Routes
 const userRoutes = require("./routes/users.routes");
@@ -30,7 +31,7 @@ db.sync({ force: false })
   .catch((error) => console.log(error));
 
 initModels();
-
+seed();
 app.get("/", (request, response, next) => {
   response.status(200).json({ message: "ok" });
   next();
